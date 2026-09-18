@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" role="img" aria-label="Фото тренера">
+  <rect width="300" height="400" fill="#22221a"/>
+  <circle cx="150" cy="150" r="62" fill="#3a3a30"/>
+  <path d="M60 400c0-58 40-104 90-104s90 46 90 104z" fill="#3a3a30"/>
+  <rect x="120" y="360" width="60" height="8" rx="4" fill="#c6ff2e" opacity=".6"/>
+</svg>

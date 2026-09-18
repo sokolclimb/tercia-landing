@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Verano placeholder">
+  <rect width="800" height="600" fill="#efe6d6"/>
+  <g fill="none" stroke="#b5563a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.55">
+    <circle cx="400" cy="300" r="120"/>
+    <circle cx="400" cy="300" r="70"/>
+    <path d="M250 300h-40M590 300h-40"/>
+  </g>
+  <text x="400" y="470" text-anchor="middle" font-family="Georgia, serif" font-size="40" fill="#857a6e">Verano</text>
+</svg>

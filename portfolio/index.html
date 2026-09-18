@@ -5,7 +5,10 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Портфолио — Tercia</title>
 <meta name="description" content="Работы Tercia: Telegram-боты, mini-app, автоматизация на n8n и сайты. Концепты и pet-проекты с работающим кодом.">
+<link rel="icon" href="../favicon.ico" sizes="any">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -57,6 +60,8 @@ h1 em{font-style:normal;background:linear-gradient(104deg,var(--acid) 20%,var(--
 .works{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .work{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r);background:var(--panel);overflow:hidden;scroll-margin-top:96px;transition:border-color .3s,transform .4s var(--ease)}
 .work:hover{border-color:var(--line-3);transform:translateY(-4px)}
+.works>.work:last-child:nth-child(odd){grid-column:1/-1;display:grid;grid-template-columns:1.15fr 1fr}
+.works>.work:last-child:nth-child(odd) .cover{aspect-ratio:auto;min-height:100%}
 .work:target{border-color:color-mix(in srgb,var(--acid) 55%,transparent);box-shadow:0 0 0 4px color-mix(in srgb,var(--acid) 12%,transparent)}
 .cover{aspect-ratio:16/10;position:relative;overflow:hidden;background:radial-gradient(120% 100% at 20% 0%,#1C1C27,#0B0B11)}
 .cover img{width:100%;height:100%;display:block;object-fit:cover;object-position:top center;transition:transform .7s var(--ease)}
@@ -110,7 +115,7 @@ h2{font-family:var(--disp);font-weight:700;font-size:clamp(28px,4vw,48px);line-h
 .js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .js .rv.in{opacity:1;transform:none}
 
-@media(max-width:960px){.works{grid-template-columns:1fr}.more{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:960px){.works{grid-template-columns:1fr}.works>.work:last-child:nth-child(odd){display:flex;flex-direction:column}.works>.work:last-child:nth-child(odd) .cover{aspect-ratio:16/10;min-height:0}.more{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:720px){.cover.has-chat{aspect-ratio:auto;height:384px}.nav-links{display:none}.nav{gap:14px}.nav .btn{margin-left:auto;padding:11px 16px;font-size:13.5px}.more{grid-template-columns:1fr}.msg{font-size:12.5px}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.js .rv{opacity:1!important;transform:none!important}}
 </style>
@@ -203,14 +208,28 @@ h2{font-family:var(--disp);font-weight:700;font-size:clamp(28px,4vw,48px);line-h
     </article>
 
     <article class="work rv" id="01">
-      <div class="cover"><span class="badge">Концепт</span><img src="../assets/cases/01-restaurant.jpg" alt="Первый экран сайта ресторана: зал, меню и кнопка брони стола" loading="lazy" decoding="async" width="1200" height="750"></div>
+      <div class="cover"><span class="badge">Концепт · живое демо</span><img src="../assets/cases/01-restaurant.jpg" alt="Первый экран сайта ресторана: зал, меню и кнопка брони стола" loading="lazy" decoding="async" width="1200" height="750"></div>
       <div class="body">
         <div class="num">01 · WordPress</div>
         <div class="w-title">Сайт ресторана</div>
         <div class="for"><b>Кому:</b> общепит</div>
         <p class="pitch">Меню редактирует сам владелец из админки, без звонка разработчику.</p>
         <div class="stack">WP · CPT «Блюдо» · бронь</div>
-        <div class="acts"><a class="btn btn-ghost" href="https://t.me/tercia_it">Демо по запросу →</a></div>
+        <div class="sub-links"><a href="restaurant/menu.html">Меню</a><a href="restaurant/booking.html">Бронь</a><a href="restaurant/gallery.html">Галерея</a><a href="restaurant/about.html">О ресторане</a><a href="restaurant/contacts.html">Контакты</a></div>
+        <div class="acts"><a class="btn btn-acid" href="restaurant/">Открыть живое демо →</a></div>
+      </div>
+    </article>
+
+    <article class="work rv" id="02">
+      <div class="cover"><span class="badge">Концепт · живое демо</span><img src="../assets/cases/02-fitness.jpg" alt="Первый экран сайта фитнес-студии: направления и кнопка пробного занятия" loading="lazy" decoding="async" width="1200" height="750"></div>
+      <div class="body">
+        <div class="num">02 · WordPress</div>
+        <div class="w-title">Сайт фитнес-студии</div>
+        <div class="for"><b>Кому:</b> фитнес-студии, спортклубы, школы танцев и йоги</div>
+        <p class="pitch">Расписание и тренеры управляются из админки — администратор обновляет их сам, без разработчика. Сайт на русском и английском.</p>
+        <div class="stack">WP · расписание · тренеры · RU/EN</div>
+        <div class="sub-links"><a href="fitness/schedule.html">Расписание</a><a href="fitness/trainers.html">Тренеры</a><a href="fitness/pricing.html">Тарифы</a><a href="fitness/contacts.html">Контакты</a></div>
+        <div class="acts"><a class="btn btn-acid" href="fitness/">Открыть живое демо →</a></div>
       </div>
     </article>
 
@@ -268,7 +287,6 @@ h2{font-family:var(--disp);font-weight:700;font-size:clamp(28px,4vw,48px);line-h
     <p class="lead" style="margin:0;max-width:40ch">Тоже концепты с кодом и тестами. Расскажу подробнее по любой.</p>
   </div>
   <section class="more" aria-label="Остальные работы">
-    <div class="item rv" id="02"><div class="num">02 <i>концепт</i></div><b>Сайт фитнес-студии</b><span>WP · расписание · тренеры</span></div>
     <div class="item rv" id="03"><div class="num">03 <i>концепт</i></div><b>Плагин: блок отзывов</b><span>Gutenberg · карусель / сетка</span></div>
     <div class="item rv" id="09"><div class="num">09 <i>концепт</i></div><b>ИИ-нутрициолог</b><span>n8n · калории и БЖУ</span></div>
     <div class="item rv" id="10"><div class="num">10 <i>концепт</i></div><b>ИИ-помощник по текстам</b><span>n8n · письма, посты, ответы</span></div>

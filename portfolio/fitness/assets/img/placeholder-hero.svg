@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 800" role="img" aria-label="Тренировка в студии FORMA">
+  <rect width="640" height="800" fill="#22221a"/>
+  <circle cx="320" cy="300" r="150" fill="#2c2c22"/>
+  <path d="M0 640c120-60 240-60 320-30s200 30 320-30v220H0z" fill="#2c2c22"/>
+  <g stroke="#c6ff2e" stroke-width="14" stroke-linecap="round" fill="none" opacity=".9">
+    <path d="M210 300h220"/>
+    <circle cx="200" cy="300" r="26"/>
+    <circle cx="440" cy="300" r="26"/>
+  </g>
+  <text x="320" y="470" text-anchor="middle" fill="#6f6f64" font-family="Inter, sans-serif" font-size="26" font-weight="700" letter-spacing="6">FORMA STUDIO</text>
+</svg>
