@@ -194,7 +194,9 @@ h2{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,58px);line
 .c-title{font-family:var(--disp);font-size:18px;font-weight:600;letter-spacing:-.02em}
 .c-meta{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2);margin-top:7px}
 .arrow{width:34px;height:34px;border-radius:50%;border:1px solid var(--line-3);display:grid;place-items:center;flex:none;font-size:14px;color:var(--muted);transition:.25s}
-.case{--h:var(--acid)}
+.case{--h:var(--acid);position:relative}
+.case-link{position:absolute;inset:0;z-index:3;border-radius:inherit}
+.case-link:focus-visible{outline:2px solid var(--h);outline-offset:3px}
 .case:nth-child(3n+2){--h:var(--violet-2)}
 .case:nth-child(3n){--h:var(--cyan)}
 .case:hover{border-color:color-mix(in srgb, var(--h) 34%, transparent)}
@@ -269,7 +271,7 @@ h2{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,58px);line
   <a class="logo" href="#top"><svg class="mark" viewBox="0 0 120 120" aria-hidden="true"><use href="#spk"/></svg><span>Tercia</span></a>
   <span class="logo-tag">Агентство<br>цифровых продуктов</span>
   <nav class="nav-links">
-    <a href="#services">Услуги</a><a href="#cases">Кейсы</a><a href="#process">Процесс</a><a href="#stats">Цифры</a><a href="#contacts">Контакты</a>
+    <a href="#services">Услуги</a><a href="#cases">Кейсы</a><a href="#process">Процесс</a><a href="#stats">Цифры</a><a href="portfolio/">Портфолио</a><a href="#contacts">Контакты</a>
   </nav>
   <a href="#cta" class="btn btn-acid">Обсудить проект</a>
   <button class="burger" aria-label="Меню"><span></span><span></span><span></span></button>
@@ -400,19 +402,19 @@ h2{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,58px);line
 
 <section class="sec wrap" id="cases" style="padding-top:0">
   <div class="head"><div><div class="kick c">Кейсы</div><h2>Избранные проекты</h2></div>
-  <a href="#contacts" class="btn btn-ghost">Все проекты →</a></div>
+  <a href="portfolio/" class="btn btn-ghost">Все проекты →</a></div>
   <div class="cases">
-    <article class="case"><div class="cover cv4"><img src="assets/cases/01-restaurant.jpg" alt="Первый экран сайта ресторана: фотография зала, меню и кнопка брони стола" loading="lazy" decoding="async" width="1200" height="750"></div>
+    <article class="case"><a class="case-link" href="portfolio/#01" aria-label="Сайт ресторана — подробнее в портфолио"></a><div class="cover cv4"><img src="assets/cases/01-restaurant.jpg" alt="Первый экран сайта ресторана: фотография зала, меню и кнопка брони стола" loading="lazy" decoding="async" width="1200" height="750"></div>
       <div class="cbody"><div><div class="c-title">Сайт ресторана</div><div class="c-meta">WordPress · меню и бронь · концепт</div></div><span class="arrow">↗</span></div></article>
-    <article class="case"><div class="cover cv2"><img src="assets/cases/02-fitness.jpg" alt="Первый экран сайта фитнес-клуба: расписание занятий и тарифы" loading="lazy" decoding="async" width="1200" height="750"></div>
+    <article class="case"><a class="case-link" href="portfolio/#02" aria-label="Сайт фитнес-клуба — подробнее в портфолио"></a><div class="cover cv2"><img src="assets/cases/02-fitness.jpg" alt="Первый экран сайта фитнес-клуба: расписание занятий и тарифы" loading="lazy" decoding="async" width="1200" height="750"></div>
       <div class="cbody"><div><div class="c-title">Сайт фитнес-клуба</div><div class="c-meta">WordPress · расписание и цены · концепт</div></div><span class="arrow">↗</span></div></article>
-    <article class="case"><div class="cover cv3"><img src="assets/cases/04-landings.jpg" alt="Витрина четырёх лендингов в разных визуальных стилях" loading="lazy" decoding="async" width="1200" height="750"></div>
+    <article class="case"><a class="case-link" href="portfolio/#04" aria-label="Четыре лендинга — подробнее в портфолио"></a><div class="cover cv3"><img src="assets/cases/04-landings.jpg" alt="Витрина четырёх лендингов в разных визуальных стилях" loading="lazy" decoding="async" width="1200" height="750"></div>
       <div class="cbody"><div><div class="c-title">Четыре лендинга</div><div class="c-meta">React · одна задача, четыре стиля · концепт</div></div><span class="arrow">↗</span></div></article>
-    <article class="case"><div class="cover cv1"><img src="assets/cases/18-loyalty.jpg" alt="Экран mini-app с картой лояльности и штампами внутри Telegram" loading="lazy" decoding="async" width="1170" height="731"></div>
+    <article class="case"><a class="case-link" href="portfolio/#18" aria-label="Карта лояльности — подробнее в портфолио"></a><div class="cover cv1"><img src="assets/cases/18-loyalty.jpg" alt="Экран mini-app с картой лояльности и штампами внутри Telegram" loading="lazy" decoding="async" width="1170" height="731"></div>
       <div class="cbody"><div><div class="c-title">Карта лояльности</div><div class="c-meta">Telegram mini-app · штампы и экран бариста · концепт</div></div><span class="arrow">↗</span></div></article>
-    <article class="case"><div class="cover cv6"><img src="assets/cases/11-faq.jpg" alt="Схема воркфлоу в n8n: обработка вопроса и ответ по базе знаний" loading="lazy" decoding="async" width="1200" height="749"></div>
+    <article class="case"><a class="case-link" href="portfolio/#11" aria-label="ИИ-поддержка по базе знаний — подробнее в портфолио"></a><div class="cover cv6"><img src="assets/cases/11-faq.jpg" alt="Схема воркфлоу в n8n: обработка вопроса и ответ по базе знаний" loading="lazy" decoding="async" width="1200" height="749"></div>
       <div class="cbody"><div><div class="c-title">ИИ-поддержка по базе знаний</div><div class="c-meta">n8n · отвечает по базе, не выдумывает · концепт</div></div><span class="arrow">↗</span></div></article>
-    <article class="case"><div class="cover cv5"><img src="assets/cases/20-pipeline.jpg" alt="Схема воркфлоу в n8n: приём заявки с сайта, проверка и уведомление" loading="lazy" decoding="async" width="1200" height="750"></div>
+    <article class="case"><a class="case-link" href="portfolio/#20" aria-label="Пайплайн заявок с сайта — подробнее в портфолио"></a><div class="cover cv5"><img src="assets/cases/20-pipeline.jpg" alt="Схема воркфлоу в n8n: приём заявки с сайта, проверка и уведомление" loading="lazy" decoding="async" width="1200" height="750"></div>
       <div class="cbody"><div><div class="c-title">Пайплайн заявок с сайта</div><div class="c-meta">n8n · валидация, дедупликация, уведомление · концепт</div></div><span class="arrow">↗</span></div></article>
   </div>
 </section>
@@ -433,7 +435,7 @@ h2{font-family:var(--disp);font-weight:700;font-size:clamp(30px,4.6vw,58px);line
       <p>Агентство цифровых продуктов полного цикла. Идея, продукт, рост — три такта одной команды.</p>
     </div>
     <div class="f-col"><div class="f-h">Услуги</div><a href="#services">Сайты</a><a href="#services">Боты и mini-app</a><a href="#services">Автоматизация</a></div>
-    <div class="f-col"><div class="f-h">Агентство</div><a href="#cases">Кейсы</a><a href="#process">Процесс</a><a href="#stats">Цифры</a><a href="#cta">Контакты</a></div>
+    <div class="f-col"><div class="f-h">Агентство</div><a href="#cases">Кейсы</a><a href="portfolio/">Портфолио</a><a href="#process">Процесс</a><a href="#stats">Цифры</a><a href="#cta">Контакты</a></div>
     <div class="f-col"><div class="f-h">Связь</div><a href="https://t.me/tercia_it">@tercia_it</a><a href="https://wa.me/79882716669">+7 988 271 66 69</a><a href="mailto:terciaagency@gmail.com">terciaagency@gmail.com</a></div>
   </div>
   <div class="f-bot"><span>© 2026 Tercia. Все права защищены.</span><span>tercia.dev</span></div>

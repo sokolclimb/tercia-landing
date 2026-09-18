@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Портфолио — Tercia</title>
+<meta name="description" content="Работы Tercia: Telegram-боты, mini-app, автоматизация на n8n и сайты. Концепты и pet-проекты с работающим кодом.">
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07070B; --bg-2:#0B0B11; --panel:#101017; --panel-2:#15151D; --sunk:#09090E;
+  --line:rgba(255,255,255,.07); --line-2:rgba(255,255,255,.045); --line-3:rgba(255,255,255,.14);
+  --fg:#F5F5F7; --muted:#A9A9B6; --muted-2:#77778A;
+  --acid:#D8FF4F; --acid-2:#B4E528; --ink:#07070B; --violet:#7C3AED; --violet-2:#A97BFF; --cyan:#4FD8FF;
+  --sans:'Manrope',system-ui,sans-serif; --disp:'Space Grotesk',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  --ease:cubic-bezier(.22,1,.36,1); --r:20px; --maxw:1320px; --pad:clamp(20px,4.4vw,52px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-inline:var(--pad)}
+.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--line-2) 1px,transparent 1px),linear-gradient(90deg,var(--line-2) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 90% 55% at 50% 0%,#000 20%,transparent 75%)}
+main,header,footer{position:relative;z-index:2}
+
+/* шапка — как на главной */
+.hdr{position:sticky;top:0;z-index:60;backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);background:rgba(7,7,11,.78);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;gap:28px;height:74px}
+.logo{display:flex;align-items:center;gap:11px;font-family:var(--disp);font-weight:700;font-size:20px;letter-spacing:-.02em}
+.mark{width:34px;height:34px;flex:none;fill:var(--acid)}
+.nav-links{display:flex;gap:4px;margin-left:auto}
+.nav-links a{font-size:14px;color:var(--muted);padding:9px 14px;border-radius:99px;transition:.22s}
+.nav-links a:hover{color:var(--fg);background:var(--panel)}
+.nav-links a[aria-current]{color:var(--ink);background:var(--acid)}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--disp);font-weight:600;font-size:14.5px;padding:13px 22px;border-radius:99px;transition:.24s var(--ease);border:1px solid transparent;white-space:nowrap}
+.btn-acid{background:var(--acid);color:var(--ink)}
+.btn-acid:hover{box-shadow:0 10px 40px -8px color-mix(in srgb,var(--acid) 55%,transparent);transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line-3);color:var(--fg)}
+.btn-ghost:hover{background:var(--panel);border-color:var(--muted-2)}
+
+/* заголовок страницы */
+.top{padding-block:clamp(56px,8vw,112px) clamp(36px,5vw,64px);position:relative}
+.orb{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;z-index:-1}
+.orb-a{width:560px;height:560px;background:color-mix(in srgb,var(--violet) 28%,transparent);top:-260px;left:-160px}
+.orb-b{width:420px;height:420px;background:color-mix(in srgb,var(--acid) 11%,transparent);top:-120px;right:-120px}
+.kick{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--acid);display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.kick::before{content:'';width:26px;height:1px;background:currentColor}
+h1{font-family:var(--disp);font-weight:700;font-size:clamp(40px,6.4vw,84px);line-height:.96;letter-spacing:-.04em;max-width:15ch;text-wrap:balance}
+h1 em{font-style:normal;background:linear-gradient(104deg,var(--acid) 20%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{max-width:58ch;margin-top:24px;font-size:clamp(16px,1.4vw,18.5px);color:var(--muted)}
+.lead b{color:var(--fg);font-weight:600}
+
+/* восемь работ */
+.works{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.work{position:relative;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r);background:var(--panel);overflow:hidden;scroll-margin-top:96px;transition:border-color .3s,transform .4s var(--ease)}
+.work:hover{border-color:var(--line-3);transform:translateY(-4px)}
+.work:target{border-color:color-mix(in srgb,var(--acid) 55%,transparent);box-shadow:0 0 0 4px color-mix(in srgb,var(--acid) 12%,transparent)}
+.cover{aspect-ratio:16/10;position:relative;overflow:hidden;background:radial-gradient(120% 100% at 20% 0%,#1C1C27,#0B0B11)}
+.cover img{width:100%;height:100%;display:block;object-fit:cover;object-position:top center;transition:transform .7s var(--ease)}
+.work:hover .cover img{transform:scale(1.04)}
+.badge{position:absolute;top:14px;left:14px;z-index:2;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);background:rgba(7,7,11,.72);border:1px solid var(--line-3);backdrop-filter:blur(8px);border-radius:99px;padding:6px 11px}
+.body{padding:24px 26px 26px;display:flex;flex-direction:column;gap:12px;flex:1}
+.num{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--muted-2)}
+.w-title{font-family:var(--disp);font-weight:600;font-size:clamp(21px,2vw,26px);letter-spacing:-.02em;line-height:1.15}
+.for{font-size:14.5px;color:var(--muted-2)}
+.for b{color:var(--muted);font-weight:600}
+.pitch{font-size:16px;color:var(--fg);line-height:1.55;padding-left:14px;border-left:2px solid var(--acid)}
+.stack{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2)}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:8px}
+.acts .btn{font-size:13.5px;padding:11px 18px}
+.sub-links{display:flex;gap:6px;flex-wrap:wrap}
+.sub-links a{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line-3);border-radius:99px;padding:5px 11px;transition:.2s}
+.sub-links a:hover{color:var(--ink);background:var(--acid);border-color:var(--acid)}
+
+/* макет чата для ботов без скриншотов */
+.chat{position:absolute;inset:0;padding:22px 22px 0;display:flex;flex-direction:column;gap:9px;justify-content:flex-end;background:radial-gradient(120% 110% at 80% 0%,color-mix(in srgb,var(--violet) 22%,#0E0E16),#0B0B11 70%)}
+.chat::before{content:attr(data-head);position:absolute;top:0;left:0;right:0;padding:13px 18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line);background:rgba(7,7,11,.6)}
+.msg{max-width:82%;font-size:13.5px;line-height:1.45;padding:10px 13px;border-radius:14px 14px 14px 4px;background:#1B1B26;border:1px solid var(--line);white-space:pre-line}
+.msg.me{align-self:flex-end;border-radius:14px 14px 4px 14px;background:color-mix(in srgb,var(--acid) 16%,#15151D);border-color:color-mix(in srgb,var(--acid) 30%,transparent)}
+.kb{display:flex;gap:6px;flex-wrap:wrap;max-width:88%}
+.kb span{font-size:12.5px;padding:7px 11px;border-radius:9px;background:#22222F;border:1px solid var(--line-3);color:var(--fg)}
+.chat .msg:last-child,.chat .kb:last-child{margin-bottom:22px}
+.cover.has-chat .badge{left:auto;right:14px}
+
+/* остальные работы */
+.more-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin:clamp(64px,8vw,110px) 0 clamp(26px,3vw,40px)}
+h2{font-family:var(--disp);font-weight:700;font-size:clamp(28px,4vw,48px);line-height:1;letter-spacing:-.035em}
+.more{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.item{border:1px solid var(--line);border-radius:16px;background:var(--panel);padding:18px 20px;display:flex;flex-direction:column;gap:6px;transition:border-color .3s}
+.item:hover{border-color:var(--line-3)}
+.item .num{display:flex;justify-content:space-between}
+.item .num i{font-style:normal;color:var(--muted-2)}
+.item b{font-family:var(--disp);font-weight:600;font-size:17px;letter-spacing:-.015em}
+.item span{font-size:13.5px;color:var(--muted-2)}
+
+/* призыв и подвал */
+.cta{margin-top:clamp(72px,9vw,130px);border:1px solid var(--line);border-radius:28px;background:linear-gradient(150deg,var(--panel-2),var(--sunk));padding:clamp(36px,5vw,72px);display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;position:relative;overflow:hidden}
+.cta::before{content:'';position:absolute;width:520px;height:520px;border-radius:50%;background:color-mix(in srgb,var(--acid) 12%,transparent);filter:blur(90px);right:-200px;top:-260px}
+.cta h2{position:relative;max-width:18ch}
+.cta p{position:relative;color:var(--muted);margin-top:12px;max-width:46ch}
+.cta .btn{position:relative;font-size:16px;padding:17px 30px}
+.ftr{margin-top:clamp(64px,8vw,110px);border-top:1px solid var(--line);background:var(--sunk);padding:36px 0}
+.ftr .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted-2)}
+.ftr a:hover{color:var(--acid)}
+
+/* появление при прокрутке — только с JS, с уважением к reduced-motion */
+.js .rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+
+@media(max-width:960px){.works{grid-template-columns:1fr}.more{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:720px){.cover.has-chat{aspect-ratio:auto;height:384px}.nav-links{display:none}.nav{gap:14px}.nav .btn{margin-left:auto;padding:11px 16px;font-size:13.5px}.more{grid-template-columns:1fr}.msg{font-size:12.5px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}.js .rv{opacity:1!important;transform:none!important}}
+</style>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<g id="spk"><path d="M12 0C12.35 10.2 13.5 11.55 21 12C13.5 12.45 12.35 13.8 12 24C11.65 13.8 10.5 12.45 3 12C10.5 11.55 11.65 10.2 12 0Z" transform="translate(19 22) scale(2.8)"/><path d="M12 0C12.35 10.2 13.5 11.55 21 12C13.5 12.45 12.35 13.8 12 24C11.65 13.8 10.5 12.45 3 12C10.5 11.55 11.65 10.2 12 0Z" transform="translate(60 12) scale(1.4)"/><path d="M12 0C12.35 10.2 13.5 11.55 21 12C13.5 12.45 12.35 13.8 12 24C11.65 13.8 10.5 12.45 3 12C10.5 11.55 11.65 10.2 12 0Z" transform="translate(16 73) scale(1.62)"/></g>
+</defs></svg>
+
+<header class="hdr"><div class="wrap nav">
+  <a class="logo" href="../"><svg class="mark" viewBox="0 0 120 120" aria-hidden="true"><use href="#spk"/></svg><span>Tercia</span></a>
+  <nav class="nav-links">
+    <a href="../">Главная</a><a href="../#services">Услуги</a><a href="../#process">Процесс</a><a href="./" aria-current="page">Портфолио</a>
+  </nav>
+  <a href="https://t.me/tercia_it" class="btn btn-acid">Обсудить проект</a>
+</div></header>
+
+<main class="wrap">
+  <section class="top">
+    <div class="orb orb-a"></div><div class="orb orb-b"></div>
+    <div class="kick">Портфолио</div>
+    <h1>Работы, которые <em>можно открыть</em></h1>
+    <p class="lead">Это <b>концепты и pet-проекты</b> — работающий код, а не макеты. Покажу любой вживую; ваш будет на ваших данных.</p>
+  </section>
+
+  <section class="works" aria-label="Избранные работы">
+
+    <article class="work rv" id="08">
+      <div class="cover has-chat">
+        <span class="badge">Концепт</span>
+        <div class="chat" data-head="Бот записи · Telegram" aria-hidden="true">
+          <div class="msg">Привет, Мария! Я помогу записаться к мастеру.
+Нажмите «Записаться», чтобы начать.</div>
+          <div class="msg me">Записаться</div>
+          <div class="msg">Подтвердите запись:
+📌 Услуга: Стрижка
+🕒 Время: пт, 14:30
+💰 Цена: 1 500 ₽
+Всё верно?</div>
+          <div class="kb"><span>✅ Подтвердить</span><span>✕ Отмена</span></div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="num">08 · Telegram-бот</div>
+        <div class="w-title">Бот записи к мастеру</div>
+        <div class="for"><b>Кому:</b> салоны, барбершопы, стоматологии, автосервисы, репетиторы</div>
+        <p class="pitch">Клиент выбирает услугу и время сам, слот бронируется атомарно — двойных записей не бывает. За час до визита бот сам напоминает.</p>
+        <div class="stack">aiogram · FSM · Postgres</div>
+        <div class="acts"><a class="btn btn-ghost" href="https://t.me/tercia_it">Демо по запросу →</a></div>
+      </div>
+    </article>
+
+    <article class="work rv" id="11">
+      <div class="cover"><span class="badge">Концепт</span><img src="../assets/cases/11-faq.jpg" alt="Схема воркфлоу в n8n: вопрос из Telegram, поиск по базе знаний, ответ или передача человеку" loading="lazy" decoding="async" width="1200" height="749"></div>
+      <div class="body">
+        <div class="num">11 · n8n + ИИ</div>
+        <div class="w-title">ИИ-поддержка по базе знаний</div>
+        <div class="for"><b>Кому:</b> любой бизнес с потоком одинаковых вопросов</div>
+        <p class="pitch">Отвечает строго по вашей базе знаний. Если ответа нет — не выдумывает, а передаёт человеку.</p>
+        <div class="stack">n8n · база знаний · Telegram</div>
+        <div class="acts"><a class="btn btn-ghost" href="https://t.me/tercia_it">Демо по запросу →</a></div>
+      </div>
+    </article>
+
+    <article class="work rv" id="20">
+      <div class="cover"><span class="badge">Концепт</span><img src="../assets/cases/20-pipeline.jpg" alt="Схема воркфлоу в n8n: приём заявки с сайта, классификация, запись и уведомление" loading="lazy" decoding="async" width="1200" height="750"></div>
+      <div class="body">
+        <div class="num">20 · n8n</div>
+        <div class="w-title">Пайплайн заявок с сайта</div>
+        <div class="for"><b>Кому:</b> у кого есть сайт и теряются лиды</div>
+        <p class="pitch">Заявка с сайта не пропадает: валидация, дедупликация, уведомление, запись в базу.</p>
+        <div class="stack">webhook · ИИ-классификация · дайджест</div>
+        <div class="acts"><a class="btn btn-ghost" href="https://t.me/tercia_it">Демо по запросу →</a></div>
+      </div>
+    </article>
+
+    <article class="work rv" id="18">
+      <div class="cover"><span class="badge">Концепт</span><img src="../assets/cases/18-loyalty.jpg" alt="Экран mini-app лояльности: карта со штампами кофейни внутри Telegram" loading="lazy" decoding="async" width="1170" height="731"></div>
+      <div class="body">
+        <div class="num">18 · Mini-app</div>
+        <div class="w-title">Карта лояльности в Telegram</div>
+        <div class="for"><b>Кому:</b> кофейни, пекарни, точки с повторными покупками</div>
+        <p class="pitch">Штампы прямо в Telegram, без пластиковых карточек. Бариста отмечает в два тапа.</p>
+        <div class="stack">React · QR-штампы · роли</div>
+        <div class="acts"><a class="btn btn-ghost" href="https://t.me/tercia_it">Демо по запросу →</a></div>
+      </div>
+    </article>
+
+    <article class="work rv" id="01">
+      <div class="cover"><span class="badge">Концепт</span><img src="../assets/cases/01-restaurant.jpg" alt="Первый экран сайта ресторана: зал, меню и кнопка брони стола" loading="lazy" decoding="async" width="1200" height="750"></div>
+      <div class="body">
+        <div class="num">01 · WordPress</div>
+        <div class="w-title">Сайт ресторана</div>
+        <div class="for"><b>Кому:</b> общепит</div>
+        <p class="pitch">Меню редактирует сам владелец из админки, без звонка разработчику.</p>
+        <div class="stack">WP · CPT «Блюдо» · бронь</div>
+        <div class="acts"><a class="btn btn-ghost" href="https://t.me/tercia_it">Демо по запросу →</a></div>
+      </div>
+    </article>
+
+    <article class="work rv" id="04">
+      <div class="cover"><span class="badge">Концепт · живое демо</span><img src="../assets/cases/04-landings.jpg" alt="Витрина четырёх лендингов в разных стилях" loading="lazy" decoding="async" width="1200" height="750"></div>
+      <div class="body">
+        <div class="num">04 · React</div>
+        <div class="w-title">Четыре лендинга в четырёх стилях</div>
+        <div class="for"><b>Кому:</b> кому нужен сайт и кто не знает, какой хочет</div>
+        <p class="pitch">Покажите, какой из четырёх ближе — от него и пойдём.</p>
+        <div class="stack">React · Vite · Framer Motion</div>
+        <div class="sub-links"><a href="landings/#/saas">SaaS · Swiss</a><a href="landings/#/coffee">Кофейня · Editorial</a><a href="landings/#/app">Приложение · Tactile</a><a href="landings/#/course">Курс · Maximalist</a></div>
+        <div class="acts"><a class="btn btn-acid" href="landings/">Открыть живое демо →</a></div>
+      </div>
+    </article>
+
+    <article class="work rv" id="13">
+      <div class="cover has-chat">
+        <span class="badge">Концепт</span>
+        <div class="chat" data-head="Бот вовлечённости · чат сообщества" aria-hidden="true">
+          <div class="msg">Привет, Мария! Добро пожаловать в чат.
+За активность начисляются очки — набирай XP и поднимайся в топе!</div>
+          <div class="msg">🔥 Мария держит стрик 7 дней подряд! Бейдж активности разблокирован.</div>
+          <div class="msg">🏆 Топ за неделю
+1. Мария — 340
+2. Артём — 295
+3. Ника — 210</div>
+        </div>
+      </div>
+      <div class="body">
+        <div class="num">13 · Бот сообщества</div>
+        <div class="w-title">Бот вовлечённости для чатов</div>
+        <div class="for"><b>Кому:</b> владельцы каналов и сообществ, инфобиз</div>
+        <p class="pitch">Очки за активность с защитой от накрутки, уровни, лидерборд. Чат оживает.</p>
+        <div class="stack">XP · лидерборд · вопрос дня</div>
+        <div class="acts"><a class="btn btn-ghost" href="https://t.me/tercia_it">Демо по запросу →</a></div>
+      </div>
+    </article>
+
+    <article class="work rv" id="22">
+      <div class="cover"><span class="badge">Концепт</span><img src="img/22-crosspost.jpg" alt="Схема воркфлоу в n8n: очередь постов и отложенная публикация в каналы" loading="lazy" decoding="async" width="1200" height="750"></div>
+      <div class="body">
+        <div class="num">22 · n8n</div>
+        <div class="w-title">Кросс-постинг</div>
+        <div class="for"><b>Кому:</b> SMM-агентства, селлеры, блогеры</div>
+        <p class="pitch">Пишете пост один раз — он уходит во все каналы по расписанию.</p>
+        <div class="stack">очередь · отложенный постинг</div>
+        <div class="acts"><a class="btn btn-ghost" href="https://t.me/tercia_it">Демо по запросу →</a></div>
+      </div>
+    </article>
+  </section>
+
+  <div class="more-head rv">
+    <div><div class="kick">Ещё работы</div><h2>Остальное в портфолио</h2></div>
+    <p class="lead" style="margin:0;max-width:40ch">Тоже концепты с кодом и тестами. Расскажу подробнее по любой.</p>
+  </div>
+  <section class="more" aria-label="Остальные работы">
+    <div class="item rv" id="02"><div class="num">02 <i>концепт</i></div><b>Сайт фитнес-студии</b><span>WP · расписание · тренеры</span></div>
+    <div class="item rv" id="03"><div class="num">03 <i>концепт</i></div><b>Плагин: блок отзывов</b><span>Gutenberg · карусель / сетка</span></div>
+    <div class="item rv" id="09"><div class="num">09 <i>концепт</i></div><b>ИИ-нутрициолог</b><span>n8n · калории и БЖУ</span></div>
+    <div class="item rv" id="10"><div class="num">10 <i>концепт</i></div><b>ИИ-помощник по текстам</b><span>n8n · письма, посты, ответы</span></div>
+    <div class="item rv" id="12"><div class="num">12 <i>концепт</i></div><b>ИИ-репетитор языка</b><span>aiogram · интервальные повторы</span></div>
+    <div class="item rv" id="14"><div class="num">14 <i>концепт</i></div><b>Бот викторин</b><span>quiz-опросы · сезоны · очки</span></div>
+    <div class="item rv" id="15"><div class="num">15 <i>концепт</i></div><b>Бот розыгрышей + рефералы</b><span>честный сид · deep-links</span></div>
+    <div class="item rv" id="16"><div class="num">16 <i>концепт</i></div><b>Бот модерации + капча</b><span>welcome · антиспам · варны</span></div>
+    <div class="item rv" id="17"><div class="num">17 <i>концепт</i></div><b>Трекер привычек, mini-app</b><span>React · initData HMAC · стрики</span></div>
+    <div class="item rv" id="19"><div class="num">19 <i>концепт</i></div><b>Поиск фриланс-заказов</b><span>React · n8n · Telethon-сборщик</span></div>
+    <div class="item rv" id="21"><div class="num">21 <i>концепт</i></div><b>Мониторинг + отчёт</b><span>n8n · детект изменений</span></div>
+  </section>
+
+  <section class="cta rv">
+    <div><h2>Нужно так же, но на ваших данных?</h2><p>Напишите, что хотите автоматизировать или запустить — покажу похожую работу вживую и предложу план.</p></div>
+    <a class="btn btn-acid" href="https://t.me/tercia_it">Написать в Telegram →</a>
+  </section>
+</main>
+
+<footer class="ftr"><div class="wrap"><span>© 2026 Tercia</span><span><a href="https://t.me/tercia_it">@tercia_it</a> · <a href="mailto:terciaagency@gmail.com">terciaagency@gmail.com</a></span><span><a href="../">tercia.dev</a></span></div></footer>
+
+<script>
+(function () {
+  var els = document.querySelectorAll('.rv');
+  var rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (rm || !('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
+  els.forEach(function (e, i) { e.style.transitionDelay = (i % 3) * 70 + 'ms'; io.observe(e); });
+  if (location.hash) { var t = document.getElementById(location.hash.slice(1)); if (t) t.classList.add('in'); }
+})();
+</script>
+</body>
+</html>
